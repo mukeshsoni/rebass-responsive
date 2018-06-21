@@ -2,6 +2,8 @@ import React, { Component } from "react"
 import { Text, Flex, Button, Sticky, Box } from "rebass"
 import SortFilter from "./SortFilter.js"
 import TypeOfPosterFilter from "./TypeOfPosterFilter.js"
+import FontAwesome from "react-fontawesome"
+import FilterHeader from "./FilterHeader.js"
 
 const FullWidthButton = Button.extend`
   width: 100%;
@@ -32,14 +34,7 @@ export default class Filters extends Component {
     return (
       <FullHeightFlex flexDirection="column">
         <Sticky top={0} bg="white">
-          <Flex p={2}>
-            <HidableBoxInverse>
-              <Text fontSize={2} mr={2} onClick={this.props.onBackClick}>
-                Back
-              </Text>
-            </HidableBoxInverse>
-            <Text>Filters</Text>
-          </Flex>
+          <FilterHeader onBackClick={this.props.onBackClick} />
         </Sticky>
         <Flex flex="1 0 auto" flexDirection="column" mt={3}>
           <Flex mt={2}>

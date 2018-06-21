@@ -1,6 +1,8 @@
 import React, { Component } from "react"
 import { Flex, Text, Heading, Box, Button, Sticky, Divider } from "rebass"
 import ListItem from "./ListItem.js"
+import FontAwesome from "react-fontawesome"
+import CategoryHeader from "./CategoryHeader.js"
 
 const FullWidthButton = Button.extend`
   width: 100%;
@@ -90,7 +92,7 @@ export default class CategorySelector extends Component {
       return (
         <Flex p={2}>
           <Text fontSize={2} mr={2} onClick={this.props.onCloseClick}>
-            X
+            <FontAwesome name="close" />
           </Text>
           <Text>Categories</Text>
         </Flex>
@@ -98,9 +100,9 @@ export default class CategorySelector extends Component {
     } else {
       return (
         <Flex alignItems="center" p={2}>
-          <Button mr={1} onClick={this.handleBackButtonClick}>
-            Back
-          </Button>
+          <Box mr={2} onClick={this.handleBackButtonClick}>
+            <FontAwesome name="arrow-left" />
+          </Box>
           <Text>Back to all categories</Text>
         </Flex>
       )
@@ -150,13 +152,17 @@ export default class CategorySelector extends Component {
   }
 
   render() {
-    const { onCategorySelect } = this.props
-    const { categoryId } = this.state
+    const { onCategorySelect, onCloseClick } = this.props
+    const { categoryId, screen } = this.state
 
     return (
       <FullHeightFlex flexDirection="column" height="100vh">
         <Sticky top={0} bg="white">
-          {this.headerContent()}
+          <CategoryHeader
+            onCloseClick={onCloseClick}
+            onBackButtonClick={this.handleBackButtonClick}
+            screen={screen}
+          />
         </Sticky>
         {categoryId && (
           <Text p={2} fontWeight="bold">

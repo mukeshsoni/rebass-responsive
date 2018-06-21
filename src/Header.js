@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { Link, Heading, Flex, Box, Input, Text, Button, Space } from "rebass"
-import { color } from "styled-system"
+import ContainerWithBg from "./ContainerWithBg"
 import Menu from "./Menu.js"
 
 const Logo = () => (
@@ -8,10 +8,6 @@ const Logo = () => (
     <Text color="white">Ikman</Text>
   </Link>
 )
-
-const ContainerWithBg = Flex.extend`
-  ${color};
-`
 
 const HidableBox = Flex.extend`
   display: flex;
