@@ -11,7 +11,7 @@ const Logo = () => (
 
 const HidableBox = Flex.extend`
   display: flex;
-  @media only screen and (min-width: 700px) {
+  @media only screen and (min-width: 500px) {
     display: none;
   }
 `

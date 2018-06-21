@@ -71,7 +71,7 @@ const ModalWithHeight = Modal.extend`
 
 const HidableBox = Flex.extend`
   display: none;
-  @media only screen and (min-width: 700px) {
+  @media only screen and (min-width: 500px) {
     display: flex;
   }
 `
