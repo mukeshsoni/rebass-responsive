@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import { Box, Flex, Button, Input } from "rebass";
+import React, { Component } from "react"
+import { Box, Flex, Button, Input } from "rebass"
 
 const FullWidthButton = Button.extend`
   width: 100%;
-`;
+`
 
 export default class SearchRow extends Component {
   render() {
-    const { onCategoryButtonClick, onLocationButtonClick } = this.props;
+    const { onCategoryButtonClick, onLocationButtonClick } = this.props
 
     return (
       <Flex flexWrap="wrap" mt={1}>
@@ -22,9 +22,9 @@ export default class SearchRow extends Component {
           </Flex>
         </Flex>
         <Box width={[1, 1 / 2]} p={1}>
-          <Input defaultValue="Hello" placeholder="Input" mt={10} />
+          <Input defaultValue="Hello" placeholder="Input" mt={10} pt={1} />
         </Box>
       </Flex>
-    );
+    )
   }
 }
