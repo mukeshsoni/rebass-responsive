@@ -5,7 +5,13 @@ import Listing from "./listing.js"
 export default class Listings extends Component {
   getListings() {
     return this.props.data.map((listing, index) => {
-      return <Listing listing={listing} key={index} />
+      return (
+        <Listing
+          listing={listing}
+          key={index}
+          onClick={this.props.onListingClick.bind(this, listing.id)}
+        />
+      )
     })
   }
 

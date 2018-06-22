@@ -6,7 +6,8 @@ import Space from "styled-space"
 
 export default class Listing extends PureComponent {
   render() {
-    const { title, description, location, category, price } = this.props.listing
+    const { onClick } = this.props
+    const { title, location, category, price } = this.props.listing
 
     return (
       <FlexPlus
@@ -14,6 +15,7 @@ export default class Listing extends PureComponent {
         borderBottom="1px solid #d4ded9"
         width="100%"
         maxWidth={500}
+        onClick={onClick}
       >
         <Image src="http://via.placeholder.com/100x100" />
         <Flex flexDirection="column" p={1} ml={[1, 2]}>

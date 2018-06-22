@@ -10,9 +10,11 @@ import Filters from "./Filters/Filters"
 import HideOnMobile from "./HideOnMobile.js"
 import categories from "./categories"
 import locations from "./locations.js"
+import DetailScreen from "./DetailScreen"
 
 const data = [
   {
+    id: 0,
     title: "Toyota Aqua 2014",
     description: "3450km",
     location: "Colombo",
@@ -21,6 +23,7 @@ const data = [
     topAd: true
   },
   {
+    id: 1,
     title: "Hoverboard",
     description: "",
     location: "Kandy",
@@ -29,6 +32,7 @@ const data = [
     topAd: false
   },
   {
+    id: 2,
     title: "Daikin air conditioner",
     description: "",
     location: "Ratmalana",
@@ -37,6 +41,7 @@ const data = [
     topAd: false
   },
   {
+    id: 3,
     title: "L. G. Regrigerator",
     description: "",
     location: "Anuradhapura",
@@ -45,6 +50,7 @@ const data = [
     topAd: false
   },
   {
+    id: 4,
     title: "L. G. Regrigerator",
     description: "",
     location: "Anuradhapura",
@@ -53,6 +59,7 @@ const data = [
     topAd: false
   },
   {
+    id: 5,
     title: "L. G. Regrigerator",
     description: "",
     location: "Anuradhapura",
@@ -84,7 +91,8 @@ class App extends Component {
     categoryId: null,
     subCategoryId: null,
     locationId: null,
-    subLocationId: null
+    subLocationId: null,
+    selectedListingId: null
   }
 
   handleCategoryButtonClick = () => {
@@ -123,6 +131,14 @@ class App extends Component {
     this.setState({ showLocationModal: false })
   }
 
+  handleListingClick = listingId => {
+    this.setState({ selectedListingId: listingId })
+  }
+
+  handleDetailsScreenBackClick = () => {
+    this.setState({ selectedListingId: null })
+  }
+
   render() {
     const {
       showCategoryModal,
@@ -131,8 +147,18 @@ class App extends Component {
       categoryId,
       subCategoryId,
       locationId,
-      subLocationId
+      subLocationId,
+      selectedListingId
     } = this.state
+
+    if (Number.isInteger(selectedListingId)) {
+      return (
+        <DetailScreen
+          onBackClick={this.handleDetailsScreenBackClick}
+          listing={data.find(listing => listing.id === selectedListingId)}
+        />
+      )
+    }
 
     return (
       <Flex flexDirection="column">
@@ -158,7 +184,7 @@ class App extends Component {
             <Filters />
           </HideOnMobile>
           <Box flex={[null, 6, 7, 8]} width="100%">
-            <Listings data={data} />
+            <Listings data={data} onListingClick={this.handleListingClick} />
           </Box>
         </Flex>
         {showCategoryModal && (
