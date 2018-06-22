@@ -1,11 +1,16 @@
 import React, { Component } from "react"
-import { Box, Flex, Button, Input } from "rebass"
+import { Box, Flex, Button } from "rebass"
 import FullWidthButton from "./Button/FullWidthButton.js"
 import HideOnNonMobile from "./HideOnNonMobile.js"
+import Input from "./Input.js"
 
 export default class SearchRow extends Component {
   render() {
-    const { onCategoryButtonClick, onLocationButtonClick } = this.props
+    const {
+      onCategoryButtonClick,
+      onLocationButtonClick,
+      category = "Category"
+    } = this.props
 
     return (
       <Flex flexWrap="wrap" mt={[0, 1]}>
@@ -18,7 +23,7 @@ export default class SearchRow extends Component {
           </HideOnNonMobile>
           <Flex flex="1" mr={[0, 1]}>
             <FullWidthButton onClick={onCategoryButtonClick}>
-              Category
+              {category}
             </FullWidthButton>
           </Flex>
         </Flex>

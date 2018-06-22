@@ -108,22 +108,19 @@ class App extends Component {
     return (
       <Flex flexDirection="column">
         <Header onFilterLinkClick={this.handleFilterLinkClick} />
-        {categoryId &&
-          subCategoryId && (
-            <Box p={2}>
-              Selected Category: {getSubCategoryName(categoryId, subCategoryId)}
-            </Box>
-          )}
-        <SearchRow onCategoryButtonClick={this.handleCategoryButtonClick} />
+        <SearchRow
+          category={categoryId && getSubCategoryName(categoryId, subCategoryId)}
+          onCategoryButtonClick={this.handleCategoryButtonClick}
+        />
         <Flex mt={2} p={1}>
           <Text>Results: </Text>
           <Text fontWeight="bold">1234</Text>
         </Flex>
-        <Flex>
+        <Flex width="100%">
           <HideOnMobile flex={[null, 3, 3, 3]}>
             <Filters />
           </HideOnMobile>
-          <Box flex={[null, 6, 7, 8]}>
+          <Box flex={[null, 6, 7, 8]} width="100%">
             <Listings data={data} />
           </Box>
         </Flex>

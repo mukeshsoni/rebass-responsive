@@ -10,6 +10,10 @@ export default class Listings extends Component {
   }
 
   render() {
-    return <Box mt={10}>{this.getListings()}</Box>
+    return (
+      <Box width="100%" mt={10}>
+        {this.getListings()}
+      </Box>
+    )
   }
 }
