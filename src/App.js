@@ -115,9 +115,10 @@ class App extends Component {
             </Box>
           )}
         <SearchRow onCategoryButtonClick={this.handleCategoryButtonClick} />
-        <Box mt={2} p={1}>
-          <Text>Results: 1234</Text>
-        </Box>
+        <Flex mt={2} p={1}>
+          <Text>Results: </Text>
+          <Text fontWeight="bold">1234</Text>
+        </Flex>
         <Flex>
           <HideOnMobile flex={[null, 3, 3, 3]}>
             <Filters />

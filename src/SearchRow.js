@@ -23,7 +23,7 @@ export default class SearchRow extends Component {
           </Flex>
         </Flex>
         <Box width={[1, 1 / 2]} p={[1, 1]}>
-          <Input defaultValue="Hello" placeholder="Input" mt={10} pt={1} />
+          <Input placeholder="Looking for something?" mt={10} pt={1} />
         </Box>
       </Flex>
     )
