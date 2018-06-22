@@ -15,10 +15,12 @@ class FilterHeader extends PureComponent {
         alignItems="center"
         width="100vw"
       >
-        <Text fontSize={2} mr={2} onClick={this.props.onBackClick}>
+        <Text fontSize={2} mr={3} onClick={this.props.onBackClick}>
           <FontAwesome name="arrow-left" inverse={true} />
         </Text>
-        <Text>Filters</Text>
+        <Text color="white" fontSize={4}>
+          Filters
+        </Text>
       </ContainerWithBg>
     )
   }

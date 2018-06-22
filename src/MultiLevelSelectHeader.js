@@ -4,25 +4,34 @@ import ContainerWithBg from "./ContainerWithBg"
 import FontAwesome from "react-fontawesome"
 import { withTheme } from "styled-components"
 
-class CategoryHeader extends PureComponent {
+class MultiLevelSelectHeader extends PureComponent {
   render() {
-    const { screen, theme } = this.props
+    const { screen, theme, header } = this.props
 
     return (
-      <ContainerWithBg p={2} bg={theme.colors.brand} alignItems="center">
-        {screen === "category" ? (
+      <ContainerWithBg
+        p={2}
+        bg={theme.colors.brand}
+        alignItems="center"
+        alignItems="center"
+      >
+        {screen === 1 ? (
           <Flex p={2}>
             <Text fontSize={2} mr={2} onClick={this.props.onCloseClick}>
               <FontAwesome name="close" inverse={true} />
             </Text>
-            <Text>Categories</Text>
+            <Text color="white" fontSize={4}>
+              {header}
+            </Text>
           </Flex>
         ) : (
           <Flex alignItems="center" p={2}>
             <Box mr={2} onClick={this.props.onBackButtonClick}>
               <FontAwesome name="arrow-left" inverse={true} />
             </Box>
-            <Text>Back to all categories</Text>
+            <Text color="white" fontSize={4}>
+              Back
+            </Text>
           </Flex>
         )}
       </ContainerWithBg>
@@ -30,4 +39,4 @@ class CategoryHeader extends PureComponent {
   }
 }
 
-export default withTheme(CategoryHeader)
+export default withTheme(MultiLevelSelectHeader)

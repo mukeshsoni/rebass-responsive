@@ -5,7 +5,7 @@ import { height } from "styled-system"
 import Listings from "./Listings.js"
 import Header from "./Header.js"
 import SearchRow from "./SearchRow.js"
-import CategorySelector from "./CategorySelector.js"
+import MultiLevelSelector from "./MultiLevelSelector"
 import Filters from "./Filters/Filters"
 import HideOnMobile from "./HideOnMobile.js"
 import categories from "./categories"
@@ -99,7 +99,7 @@ class App extends Component {
     this.setState({ showCategoryModal: true })
   }
 
-  applyCategoryFilter = (categoryId, subCategoryId) => {
+  applyCategoryFilter = ([categoryId, subCategoryId]) => {
     this.setState({ categoryId, subCategoryId, showCategoryModal: false })
   }
 
@@ -123,7 +123,7 @@ class App extends Component {
     this.setState({ showLocationModal: true })
   }
 
-  applyLocationFilter = (locationId, subLocationId) => {
+  applyLocationFilter = ([locationId, subLocationId]) => {
     this.setState({ locationId, subLocationId, showLocationModal: false })
   }
 
@@ -193,10 +193,11 @@ class App extends Component {
             width={["100vw", "80vh"]}
             height={["100vh", "auto"]}
           >
-            <CategorySelector
-              categories={categories}
+            <MultiLevelSelector
+              headers={["Categories"]}
+              data={categories}
               onCloseClick={this.handleCategoryModalCloseClick}
-              onCategorySelect={this.applyCategoryFilter}
+              onItemSelection={this.applyCategoryFilter}
             />
           </ModalWithHeight>
         )}
@@ -206,10 +207,11 @@ class App extends Component {
             width={["100vw", "80vh"]}
             height={["100vh", "auto"]}
           >
-            <CategorySelector
-              categories={locations}
+            <MultiLevelSelector
+              headers={["Locations"]}
+              data={locations}
               onCloseClick={this.handleLocationModalCloseClick}
-              onCategorySelect={this.applyLocationFilter}
+              onItemSelection={this.applyLocationFilter}
             />
           </ModalWithHeight>
         )}
