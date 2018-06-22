@@ -1,20 +1,17 @@
 import React, { Component } from "react"
-import { Link, Heading, Flex, Box, Input, Text, Button, Space } from "rebass"
+import { Link, Flex, Box, Text, ButtonTransparent } from "rebass"
 import ContainerWithBg from "./ContainerWithBg"
 import Menu from "./Menu.js"
+import HideOnMobile from "./HideOnMobile"
+import HideOnNonMobile from "./HideOnNonMobile"
+import FontAwesome from "react-fontawesome"
+import YellowButton from "./Button/YellowButton.js"
 
 const Logo = () => (
   <Link href="#!">
     <Text color="white">Ikman</Text>
   </Link>
 )
-
-const HidableBox = Flex.extend`
-  display: flex;
-  @media only screen and (min-width: 500px) {
-    display: none;
-  }
-`
 
 export default class Header extends Component {
   render() {
@@ -30,10 +27,17 @@ export default class Header extends Component {
           <Logo />
         </Flex>
         <Flex alignItems="center">
-          <HidableBox mr={2}>
-            <Link onClick={this.props.onFilterLinkClick}>Filter</Link>
-          </HidableBox>
-          <Button>Post Ad</Button>
+          <HideOnNonMobile mr={2}>
+            <ButtonTransparent onClick={this.props.onFilterLinkClick}>
+              <FontAwesome name="filter" />
+            </ButtonTransparent>
+          </HideOnNonMobile>
+          <Box mr={3}>
+            <FontAwesome name="comments" />
+          </Box>
+          <HideOnMobile>
+            <YellowButton>Post your ad</YellowButton>
+          </HideOnMobile>
         </Flex>
       </ContainerWithBg>
     )

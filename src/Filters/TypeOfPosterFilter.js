@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react"
-import { Divider, Flex, Text, Select, Radio, Label } from "rebass"
+import { Divider, Flex, Text, Radio, Label } from "rebass"
 
 export default class TypeOfPosterFilter extends PureComponent {
   render() {

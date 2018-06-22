@@ -1,41 +1,26 @@
 import React, { Component } from "react"
-import { Text, Flex, Button, Sticky, Box } from "rebass"
+import { Flex } from "rebass"
 import SortFilter from "./SortFilter.js"
 import TypeOfPosterFilter from "./TypeOfPosterFilter.js"
-import FontAwesome from "react-fontawesome"
 import FilterHeader from "./FilterHeader.js"
-
-const FullWidthButton = Button.extend`
-  width: 100%;
-  border-radius: 0;
-  min-height: 100%;
-`
-
-const FullHeightFlex = Flex.extend`
-  height: 100vh;
-`
-
-const HidableBox = Flex.extend`
-  display: none;
-  @media only screen and (max-width: 500px) {
-    display: flex;
-  }
-`
-
-const HidableBoxInverse = Flex.extend`
-  display: flex;
-  @media only screen and (min-width: 500px) {
-    display: none;
-  }
-`
+import HideOnNonMobile from "../HideOnNonMobile"
+import FullWidthSticky from "../FullWidthSticky"
+import FullWidthButton from "../Button/FullWidthButton.js"
+import FullHeightFlex from "../FullHeightFlex"
 
 export default class Filters extends Component {
   render() {
     return (
-      <FullHeightFlex flexDirection="column">
-        <Sticky top={0} bg="white">
-          <FilterHeader onBackClick={this.props.onBackClick} />
-        </Sticky>
+      <FullHeightFlex
+        flexDirection="column"
+        p={[0, 3]}
+        borderRight={["none", "2px solid gray"]}
+      >
+        <HideOnNonMobile>
+          <FullWidthSticky top={0} bg="white" width="100vw">
+            <FilterHeader onBackClick={this.props.onBackClick} />
+          </FullWidthSticky>
+        </HideOnNonMobile>
         <Flex flex="1 0 auto" flexDirection="column" mt={3}>
           <Flex mt={2}>
             <SortFilter />
@@ -44,13 +29,13 @@ export default class Filters extends Component {
             <TypeOfPosterFilter />
           </Flex>
         </Flex>
-        <HidableBox width="100%">
-          <Sticky bottom={0}>
+        <HideOnNonMobile width="100%">
+          <FullWidthSticky bottom={0}>
             <FullWidthButton onClick={this.props.onApplyFilterClick}>
               Apply filter
             </FullWidthButton>
-          </Sticky>
-        </HidableBox>
+          </FullWidthSticky>
+        </HideOnNonMobile>
       </FullHeightFlex>
     )
   }

@@ -1,13 +1,14 @@
 import React, { Component } from "react"
-import logo from "./logo.svg"
 import "./App.css"
-import { Modal, Heading, Flex, Box, Input, Text, Button, Space } from "rebass"
+import { Modal, Flex, Box, Text } from "rebass"
 import { height } from "styled-system"
 import Listings from "./Listings.js"
 import Header from "./Header.js"
 import SearchRow from "./SearchRow.js"
 import CategorySelector from "./CategorySelector.js"
 import Filters from "./Filters/Filters"
+import HideOnMobile from "./HideOnMobile.js"
+import { getSubCategoryName } from "./categories"
 
 const data = [
   {
@@ -69,13 +70,6 @@ const ModalWithHeight = Modal.extend`
   border-radius: 0;
 `
 
-const HidableBox = Flex.extend`
-  display: none;
-  @media only screen and (min-width: 500px) {
-    display: flex;
-  }
-`
-
 class App extends Component {
   state = { showCategoryModal: false, showFilterModal: false }
 
@@ -104,19 +98,30 @@ class App extends Component {
   }
 
   render() {
-    const { showCategoryModal, showFilterModal } = this.state
+    const {
+      showCategoryModal,
+      showFilterModal,
+      categoryId,
+      subCategoryId
+    } = this.state
 
     return (
       <Flex flexDirection="column">
         <Header onFilterLinkClick={this.handleFilterLinkClick} />
+        {categoryId &&
+          subCategoryId && (
+            <Box p={2}>
+              Selected Category: {getSubCategoryName(categoryId, subCategoryId)}
+            </Box>
+          )}
         <SearchRow onCategoryButtonClick={this.handleCategoryButtonClick} />
         <Box mt={2} p={1}>
           <Text>Results: 1234</Text>
         </Box>
         <Flex>
-          <HidableBox flex={1}>
+          <HideOnMobile flex={1}>
             <Filters />
-          </HidableBox>
+          </HideOnMobile>
           <Box flex="3">
             <Listings data={data} />
           </Box>

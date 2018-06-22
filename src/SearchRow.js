@@ -1,9 +1,6 @@
 import React, { Component } from "react"
 import { Box, Flex, Button, Input } from "rebass"
-
-const FullWidthButton = Button.extend`
-  width: 100%;
-`
+import FullWidthButton from "./Button/FullWidthButton.js"
 
 export default class SearchRow extends Component {
   render() {

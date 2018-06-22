@@ -1,66 +1,10 @@
 import React, { Component } from "react"
-import { Flex, Text, Heading, Box, Button, Sticky, Divider } from "rebass"
+import { Flex, Text, Box, Sticky, Divider } from "rebass"
 import ListItem from "./ListItem.js"
 import FontAwesome from "react-fontawesome"
 import CategoryHeader from "./CategoryHeader.js"
-
-const FullWidthButton = Button.extend`
-  width: 100%;
-  border-radius: 0;
-  min-height: 100%;
-`
-
-const FullHeightFlex = Flex.extend`
-  height: 100vh;
-`
-
-const categories2 = [
-  "sports",
-  "education",
-  "electronics",
-  "sports",
-  "education",
-  "electronics",
-  "sports",
-  "education",
-  "electronics",
-  "sports",
-  "education",
-  "electronics",
-  "sports",
-  "education",
-  "electronics",
-  "sports",
-  "education",
-  "electronics"
-]
-
-const categories = [
-  {
-    id: 1,
-    name: "Books",
-    subCategories: [
-      { id: 1, name: "Hardcover" },
-      { id: 2, name: "Paperback" },
-      { id: 3, name: "Electronic" }
-    ]
-  },
-  {
-    id: 2,
-    name: "Movies",
-    subCategories: [
-      { id: 4, name: "DVD" },
-      { id: 5, name: "BluRay" },
-      { id: 6, name: "Download" }
-    ]
-  },
-  {
-    id: 3,
-    name: "Games",
-    subCategories: [{ id: 7, name: "XBox" }, { id: 8, name: "PC" }]
-  },
-  { id: 4, name: "Music" }
-]
+import FullHeightFlex from "./FullHeightFlex"
+import categories, { getCategoryName } from "./categories.js"
 
 export default class CategorySelector extends Component {
   state = {
@@ -146,11 +90,6 @@ export default class CategorySelector extends Component {
     }
   }
 
-  getCategoryName() {
-    return categories.find(category => category.id === this.state.categoryId)
-      .name
-  }
-
   render() {
     const { onCategorySelect, onCloseClick } = this.props
     const { categoryId, screen } = this.state
@@ -166,7 +105,7 @@ export default class CategorySelector extends Component {
         </Sticky>
         {categoryId && (
           <Text p={2} fontWeight="bold">
-            {this.getCategoryName()}
+            {getCategoryName(categoryId)}
           </Text>
         )}
         {this.getList()}
