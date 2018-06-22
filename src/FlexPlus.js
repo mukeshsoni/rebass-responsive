@@ -2,7 +2,7 @@ import React from "react"
 import { Flex } from "rebass"
 import { border, borderBottom, width, maxWidth, space } from "styled-system"
 
-const FlexWithBorder = Flex.extend`
+const FlexPlus = Flex.extend`
   ${space};
   ${border};
   ${borderBottom};
@@ -10,4 +10,4 @@ const FlexWithBorder = Flex.extend`
   ${maxWidth};
 `
 
-export default FlexWithBorder
+export default FlexPlus
