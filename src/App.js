@@ -9,6 +9,7 @@ import CategorySelector from "./CategorySelector.js"
 import Filters from "./Filters/Filters"
 import HideOnMobile from "./HideOnMobile.js"
 import categories from "./categories"
+import locations from "./locations.js"
 
 const data = [
   {
@@ -70,13 +71,21 @@ const ModalWithHeight = Modal.extend`
   border-radius: 0;
 `
 
-function getSubCategoryName(catId, subCatId) {
+function getSubCategoryName(categories, catId, subCatId) {
   const category = categories.find(category => category.id === catId)
   return category.subCategories.find(subCat => subCat.id === subCatId).name
 }
 
 class App extends Component {
-  state = { showCategoryModal: false, showFilterModal: false }
+  state = {
+    showCategoryModal: false,
+    showFilterModal: false,
+    showLocationModal: false,
+    categoryId: null,
+    subCategoryId: null,
+    locationId: null,
+    subLocationId: null
+  }
 
   handleCategoryButtonClick = () => {
     this.setState({ showCategoryModal: true })
@@ -102,20 +111,43 @@ class App extends Component {
     this.setState({ showFilterModal: false })
   }
 
+  handleLocationButtonClick = () => {
+    this.setState({ showLocationModal: true })
+  }
+
+  applyLocationFilter = (locationId, subLocationId) => {
+    this.setState({ locationId, subLocationId, showLocationModal: false })
+  }
+
+  handleLocationModalCloseClick = () => {
+    this.setState({ showLocationModal: false })
+  }
+
   render() {
     const {
       showCategoryModal,
+      showLocationModal,
       showFilterModal,
       categoryId,
-      subCategoryId
+      subCategoryId,
+      locationId,
+      subLocationId
     } = this.state
 
     return (
       <Flex flexDirection="column">
         <Header onFilterLinkClick={this.handleFilterLinkClick} />
         <SearchRow
-          category={categoryId && getSubCategoryName(categoryId, subCategoryId)}
+          category={
+            categoryId &&
+            getSubCategoryName(categories, categoryId, subCategoryId)
+          }
+          location={
+            locationId &&
+            getSubCategoryName(locations, locationId, subLocationId)
+          }
           onCategoryButtonClick={this.handleCategoryButtonClick}
+          onLocationButtonClick={this.handleLocationButtonClick}
         />
         <Flex mt={2} p={1}>
           <Text>Results: </Text>
@@ -136,8 +168,22 @@ class App extends Component {
             height={["100vh", "auto"]}
           >
             <CategorySelector
+              categories={categories}
               onCloseClick={this.handleCategoryModalCloseClick}
               onCategorySelect={this.applyCategoryFilter}
+            />
+          </ModalWithHeight>
+        )}
+        {showLocationModal && (
+          <ModalWithHeight
+            bg="white"
+            width={["100vw", "80vh"]}
+            height={["100vh", "auto"]}
+          >
+            <CategorySelector
+              categories={locations}
+              onCloseClick={this.handleLocationModalCloseClick}
+              onCategorySelect={this.applyLocationFilter}
             />
           </ModalWithHeight>
         )}

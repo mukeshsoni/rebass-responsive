@@ -4,9 +4,8 @@ import ListItem from "./ListItem.js"
 import FontAwesome from "react-fontawesome"
 import CategoryHeader from "./CategoryHeader.js"
 import FullHeightFlex from "./FullHeightFlex"
-import categories from "./categories.js"
 
-function getCategoryName(catId) {
+function getCategoryName(categories, catId) {
   return categories.find(category => category.id === catId).name
 }
 
@@ -57,6 +56,8 @@ export default class CategorySelector extends Component {
     }
   }
   getList() {
+    const { categories } = this.props
+
     if (this.state.screen === "category") {
       return (
         <Box flex="1 0 auto" mt={3}>
@@ -95,7 +96,7 @@ export default class CategorySelector extends Component {
   }
 
   render() {
-    const { onCategorySelect, onCloseClick } = this.props
+    const { categories, onCategorySelect, onCloseClick } = this.props
     const { categoryId, screen } = this.state
 
     return (
@@ -109,7 +110,7 @@ export default class CategorySelector extends Component {
         </Sticky>
         {categoryId && (
           <Text p={2} fontWeight="bold">
-            {getCategoryName(categoryId)}
+            {getCategoryName(categories, categoryId)}
           </Text>
         )}
         {this.getList()}
