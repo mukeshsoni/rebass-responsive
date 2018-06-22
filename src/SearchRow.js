@@ -30,7 +30,7 @@ export default class SearchRow extends Component {
             </FullWidthButton>
           </Flex>
         </Flex>
-        <Box width={[1, 1 / 2]} p={[1, 1]}>
+        <Box width={[1, 1 / 2]} p={[1, 1]} mx={[2, 0]} mt={[2, 0]}>
           <Input placeholder="Looking for something?" mt={10} pt={1} />
         </Box>
       </Flex>
