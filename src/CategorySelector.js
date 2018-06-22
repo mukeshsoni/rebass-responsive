@@ -4,7 +4,11 @@ import ListItem from "./ListItem.js"
 import FontAwesome from "react-fontawesome"
 import CategoryHeader from "./CategoryHeader.js"
 import FullHeightFlex from "./FullHeightFlex"
-import categories, { getCategoryName } from "./categories.js"
+import categories from "./categories.js"
+
+function getCategoryName(catId) {
+  return categories.find(category => category.id === catId).name
+}
 
 export default class CategorySelector extends Component {
   state = {

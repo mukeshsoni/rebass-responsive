@@ -2,13 +2,14 @@ import React, { PureComponent } from "react"
 import { Flex, Box, Text } from "rebass"
 import ContainerWithBg from "./ContainerWithBg"
 import FontAwesome from "react-fontawesome"
+import { withTheme } from "styled-components"
 
-export default class CategoryHeader extends PureComponent {
+class CategoryHeader extends PureComponent {
   render() {
-    const { screen } = this.props
+    const { screen, theme } = this.props
 
     return (
-      <ContainerWithBg p={2} bg="#159777" alignItems="center">
+      <ContainerWithBg p={2} bg={theme.colors.brand} alignItems="center">
         {screen === "category" ? (
           <Flex p={2}>
             <Text fontSize={2} mr={2} onClick={this.props.onCloseClick}>
@@ -28,3 +29,5 @@ export default class CategoryHeader extends PureComponent {
     )
   }
 }
+
+export default withTheme(CategoryHeader)

@@ -8,7 +8,7 @@ import SearchRow from "./SearchRow.js"
 import CategorySelector from "./CategorySelector.js"
 import Filters from "./Filters/Filters"
 import HideOnMobile from "./HideOnMobile.js"
-import { getSubCategoryName } from "./categories"
+import categories from "./categories"
 
 const data = [
   {
@@ -69,6 +69,11 @@ const ModalWithHeight = Modal.extend`
   padding: 0;
   border-radius: 0;
 `
+
+function getSubCategoryName(catId, subCatId) {
+  const category = categories.find(category => category.id === catId)
+  return category.subCategories.find(subCat => subCat.id === subCatId).name
+}
 
 class App extends Component {
   state = { showCategoryModal: false, showFilterModal: false }

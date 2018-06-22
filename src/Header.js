@@ -6,6 +6,7 @@ import HideOnMobile from "./HideOnMobile"
 import HideOnNonMobile from "./HideOnNonMobile"
 import FontAwesome from "react-fontawesome"
 import YellowButton from "./Button/YellowButton.js"
+import { withTheme } from "styled-components"
 
 const Logo = () => (
   <Link href="#!">
@@ -13,13 +14,15 @@ const Logo = () => (
   </Link>
 )
 
-export default class Header extends Component {
+class Header extends Component {
   render() {
+    const { colors } = this.props.theme
+
     return (
       <ContainerWithBg
         p={2}
         justifyContent="space-between"
-        bg="#159777"
+        bg={colors.brand}
         alignItems="center"
       >
         <Flex>
@@ -43,3 +46,5 @@ export default class Header extends Component {
     )
   }
 }
+
+export default withTheme(Header)
