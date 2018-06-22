@@ -15,6 +15,7 @@ export default class Filters extends Component {
         flexDirection="column"
         p={[0, 3]}
         borderRight={["none", "2px solid gray"]}
+        width="100%"
       >
         <HideOnNonMobile>
           <FullWidthSticky top={0} bg="white" width="100vw">

@@ -119,10 +119,10 @@ class App extends Component {
           <Text>Results: 1234</Text>
         </Box>
         <Flex>
-          <HideOnMobile flex={1}>
+          <HideOnMobile flex={[null, 3, 3, 3]}>
             <Filters />
           </HideOnMobile>
-          <Box flex="3">
+          <Box flex={[null, 6, 7, 8]}>
             <Listings data={data} />
           </Box>
         </Flex>
