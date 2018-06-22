@@ -7,6 +7,7 @@ const FullWidthButton = Button.extend`
   width: 100%;
   border-radius: 0;
   min-height: 100%;
+  font-size: 19px;
 `
 
 export default FullWidthButton

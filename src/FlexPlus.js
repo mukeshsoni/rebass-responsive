@@ -6,7 +6,8 @@ import {
   borderTop,
   width,
   maxWidth,
-  space
+  space,
+  height
 } from "styled-system"
 
 const FlexPlus = Flex.extend`
@@ -16,6 +17,7 @@ const FlexPlus = Flex.extend`
   ${borderTop};
   ${width};
   ${maxWidth};
+  ${height};
 `
 
 export default FlexPlus
