@@ -3,10 +3,14 @@ import { Box, Flex, Text, Image } from "rebass"
 import { SubduedText, BoldText } from "./Text"
 import FlexPlus from "./FlexPlus"
 import Space from "styled-space"
+import { withTheme } from "styled-components"
 
-export default class Listing extends PureComponent {
+class Listing extends PureComponent {
   render() {
-    const { onClick } = this.props
+    const {
+      onClick,
+      theme: { colors }
+    } = this.props
     const { title, location, category, price } = this.props.listing
 
     return (
@@ -25,10 +29,12 @@ export default class Listing extends PureComponent {
               <SubduedText>{location}</SubduedText>,{" "}
               <SubduedText>{category}</SubduedText>
             </Flex>
-            <BoldText>Rs. {price}</BoldText>
+            <Text color={colors.brand}>Rs. {price}</Text>
           </Space>
         </Flex>
       </FlexPlus>
     )
   }
 }
+
+export default withTheme(Listing)
