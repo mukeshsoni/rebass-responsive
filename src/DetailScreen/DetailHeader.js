@@ -21,11 +21,7 @@ class DetailHeader extends PureComponent {
       >
         <Flex p={2}>
           <Text fontSize={2} mr={3} onClick={onBackClick}>
-            <FontAwesome
-              size="2x"
-              name="arrow-left"
-              style={{ color: "white" }}
-            />
+            <FontAwesome size="2x" name="arrow-left" inverse={true} />
           </Text>
           <Text color="white" fontSize={4}>
             Details
@@ -33,12 +29,13 @@ class DetailHeader extends PureComponent {
         </Flex>
         <Flex>
           <Space mr={3}>
+            <FontAwesome size="2x" name="share-alt" inverse={true} />
             <FontAwesome
               size="2x"
-              name="share-alt"
+              name="star"
               style={{ color: "white" }}
+              inverse={true}
             />
-            <FontAwesome size="2x" name="star" style={{ color: "white" }} />
           </Space>
         </Flex>
       </ContainerWithBg>

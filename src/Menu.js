@@ -27,7 +27,7 @@ export default class Menu extends Component {
       <Flex>
         <Flex onClick={this.handleHamburgerClick} flexDirection="column">
           <HideOnNonMobile mr={2}>
-            <FontAwesome name="bars" />
+            <FontAwesome name="bars" inverse={true} />
           </HideOnNonMobile>
           <HideOnMobile flexDirection={["column", "row"]} mr={2}>
             {this.getHidableLinks()}

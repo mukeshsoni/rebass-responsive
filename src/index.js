@@ -7,7 +7,8 @@ import registerServiceWorker from "./registerServiceWorker"
 
 const theme = {
   colors: {
-    brand: "#159777"
+    brand: "#159777",
+    subdue: ""
   }
 }
 

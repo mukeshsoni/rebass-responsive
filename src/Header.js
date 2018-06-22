@@ -32,11 +32,11 @@ class Header extends Component {
         <Flex alignItems="center">
           <HideOnNonMobile mr={2}>
             <ButtonTransparent onClick={this.props.onFilterLinkClick}>
-              <FontAwesome name="filter" />
+              <FontAwesome name="filter" inverse={true} />
             </ButtonTransparent>
           </HideOnNonMobile>
           <Box mr={3}>
-            <FontAwesome name="comments" />
+            <FontAwesome name="comments" inverse={true} />
           </Box>
           <HideOnMobile>
             <YellowButton>Post your ad</YellowButton>

@@ -16,7 +16,7 @@ class FilterHeader extends PureComponent {
         width="100vw"
       >
         <Text fontSize={2} mr={2} onClick={this.props.onBackClick}>
-          <FontAwesome name="arrow-left" />
+          <FontAwesome name="arrow-left" inverse={true} />
         </Text>
         <Text>Filters</Text>
       </ContainerWithBg>
