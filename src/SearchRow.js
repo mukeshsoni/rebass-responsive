@@ -16,7 +16,7 @@ export default class SearchRow extends Component {
 
     return (
       <Flex flexWrap="wrap" mt={[0, 1]}>
-        <FlexPlus width={[1, 1 / 2]} p={[0, 1]} height={[50, null]}>
+        <FlexPlus width={[1, 1, 1 / 2]} p={[0, 1]} height={[50, null]}>
           <Flex flex="1" mr={[0, 1]}>
             <FullWidthButton onClick={onLocationButtonClick}>
               {location || "Location"}
@@ -31,7 +31,7 @@ export default class SearchRow extends Component {
             </FullWidthButton>
           </Flex>
         </FlexPlus>
-        <Box width={[1, 1 / 2]} p={[1, 1]} mx={[2, 0]} mt={[2, 0]}>
+        <Box width={[1, 1, 1 / 2]} p={[1, 1]} mx={[2, 0]} mt={[2, 0]}>
           <Input placeholder="Looking for something?" mt={10} pt={1} />
         </Box>
       </Flex>

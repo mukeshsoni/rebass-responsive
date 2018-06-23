@@ -4,6 +4,9 @@ import { BoldText, SubduedText } from "../Text"
 import { withTheme } from "styled-components"
 import DetailHeader from "./DetailHeader.js"
 import DetailScreenActions from "./DetailScreenActions"
+import HideOnDesktop from "../HideOnDesktop.js"
+import HideOnTablet from "../HideOnTablet.js"
+import Header from "../Header.js"
 
 class DetailScreen extends Component {
   render() {
@@ -15,7 +18,12 @@ class DetailScreen extends Component {
 
     return (
       <Flex flexDirection="column">
-        <DetailHeader onBackClick={onBackClick} />
+        <HideOnTablet>
+          <Header />
+        </HideOnTablet>
+        <HideOnDesktop>
+          <DetailHeader onBackClick={onBackClick} />
+        </HideOnDesktop>
         <Carousel index={false ? 1 : 0} mb={3}>
           <Box>
             <Image

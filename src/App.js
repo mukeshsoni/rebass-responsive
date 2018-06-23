@@ -92,7 +92,7 @@ class App extends Component {
     subCategoryId: null,
     locationId: null,
     subLocationId: null,
-    selectedListingId: null
+    selectedListingId: 0
   }
 
   handleCategoryButtonClick = () => {
