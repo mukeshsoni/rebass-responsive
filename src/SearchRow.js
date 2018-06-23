@@ -10,6 +10,7 @@ export default class SearchRow extends Component {
     const {
       onCategoryButtonClick,
       onLocationButtonClick,
+      onInput,
       category,
       location
     } = this.props
@@ -32,7 +33,12 @@ export default class SearchRow extends Component {
           </Flex>
         </FlexPlus>
         <Box width={[1, 1, 1 / 2]} p={[1, 1]} mx={[2, 0]} mt={[2, 0]}>
-          <Input placeholder="Looking for something?" mt={10} pt={1} />
+          <Input
+            placeholder="Looking for something?"
+            mt={10}
+            pt={1}
+            onInput={onInput}
+          />
         </Box>
       </Flex>
     )

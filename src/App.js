@@ -100,6 +100,20 @@ function getSubCategoryName(categories, catId, subCatId) {
   return category.subCategories.find(subCat => subCat.id === subCatId).name
 }
 
+function getFilteredData(data, searchString) {
+  if (!searchString) {
+    return data
+  }
+
+  return data.filter(
+    listing =>
+      listing.title.toLowerCase().includes(searchString.toLowerCase()) ||
+      listing.location.toLowerCase().includes(searchString.toLowerCase()) ||
+      listing.category.toLowerCase().includes(searchString.toLowerCase()) ||
+      listing.description.toLowerCase().includes(searchString.toLowerCase())
+  )
+}
+
 class App extends Component {
   state = {
     showCategoryModal: false,
@@ -109,7 +123,8 @@ class App extends Component {
     subCategoryId: null,
     locationId: null,
     subLocationId: null,
-    selectedListingId: 0
+    selectedListingId: 0,
+    searchString: ""
   }
 
   handleCategoryButtonClick = () => {
@@ -156,6 +171,10 @@ class App extends Component {
     this.setState({ selectedListingId: null })
   }
 
+  handleSearchInput = e => {
+    this.setState({ searchString: e.target.value })
+  }
+
   render() {
     const {
       showCategoryModal,
@@ -165,7 +184,8 @@ class App extends Component {
       subCategoryId,
       locationId,
       subLocationId,
-      selectedListingId
+      selectedListingId,
+      searchString
     } = this.state
 
     if (Number.isInteger(selectedListingId)) {
@@ -191,6 +211,7 @@ class App extends Component {
           }
           onCategoryButtonClick={this.handleCategoryButtonClick}
           onLocationButtonClick={this.handleLocationButtonClick}
+          onInput={this.handleSearchInput}
         />
         <Flex mt={2} p={1}>
           <Text>Results: </Text>
@@ -201,7 +222,10 @@ class App extends Component {
             <Filters />
           </HideOnMobile>
           <Box flex={[null, 6, 7, 8]} width="100%">
-            <Listings data={data} onListingClick={this.handleListingClick} />
+            <Listings
+              data={getFilteredData(data, searchString)}
+              onListingClick={this.handleListingClick}
+            />
           </Box>
         </Flex>
         {showCategoryModal && (
