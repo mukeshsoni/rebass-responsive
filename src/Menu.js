@@ -1,8 +1,11 @@
 import React, { Component } from "react"
-import { Link, Flex } from "rebass"
+import { Link, Flex, Drawer, Divider } from "rebass"
 import FontAwesome from "react-fontawesome"
-import HideOnMobile from "./HideOnMobile"
-import HideOnNonMobile from "./HideOnNonMobile"
+import HideOnMobile from "./HideOnMobile.js"
+import HideOnNonMobile from "./HideOnNonMobile.js"
+import YellowButton from "./Button/YellowButton.js"
+import SubduedText from "./Text/SubduedText.js"
+// import Drawer from './Drawer.js'
 
 export default class Menu extends Component {
   state = { showMenuOnMobile: false }
@@ -32,9 +35,24 @@ export default class Menu extends Component {
           <HideOnMobile flexDirection={["column", "row"]} mr={2}>
             {this.getHidableLinks()}
           </HideOnMobile>
-          {showMenuOnMobile && this.getHidableLinks()}
+          <Drawer
+            open={showMenuOnMobile}
+            bg="dark"
+            position="left"
+            color="white"
+          >
+            <Flex flexDirection="column" p={2}>
+              <YellowButton mb={3}>Post your ad</YellowButton>
+              <SubduedText>ADS</SubduedText>
+              <Divider w={1} />
+              <Link>All ads</Link>
+              <Link>Post your ad</Link>
+            </Flex>
+          </Drawer>
         </Flex>
       </Flex>
     )
+
+    // {showMenuOnMobile && this.getHidableLinks()}
   }
 }
