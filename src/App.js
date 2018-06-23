@@ -194,7 +194,7 @@ class App extends Component {
             height={["100vh", "auto"]}
           >
             <MultiLevelSelector
-              headers={["Categories"]}
+              listType="Categories"
               data={categories}
               onCloseClick={this.handleCategoryModalCloseClick}
               onItemSelection={this.applyCategoryFilter}
@@ -208,7 +208,7 @@ class App extends Component {
             height={["100vh", "auto"]}
           >
             <MultiLevelSelector
-              headers={["Locations"]}
+              listType="Locations"
               data={locations}
               onCloseClick={this.handleLocationModalCloseClick}
               onItemSelection={this.applyLocationFilter}

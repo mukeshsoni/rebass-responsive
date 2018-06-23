@@ -89,7 +89,7 @@ export default class Menu extends Component {
 
   adSection(section) {
     return (
-      <Box mb={4}>
+      <Box mb={4} key={section.header}>
         <SubduedText>{section.header}</SubduedText>
         <Divider w={1} />
         {section.items.map((item, index) => {

@@ -9,7 +9,7 @@ const theme = {
   colors: {
     brand: "#159777",
     subdue: "",
-    dark: "#1c281c"
+    dark: "#444D4E"
   }
 }
 
