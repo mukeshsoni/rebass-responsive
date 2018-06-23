@@ -8,6 +8,7 @@ import Space from "styled-space"
 class DetailHeader extends PureComponent {
   render() {
     const {
+      title,
       theme: { colors },
       onBackClick
     } = this.props
@@ -23,10 +24,10 @@ class DetailHeader extends PureComponent {
           <Text fontSize={2} mr={3} onClick={onBackClick}>
             <FontAwesome size="2x" name="arrow-left" inverse={true} />
           </Text>
-          <Text color="white" fontSize={4}>
-            Details
-          </Text>
         </Flex>
+        <Text color="white" fontSize={4}>
+          {title}
+        </Text>
         <Flex>
           <Space mr={3}>
             <FontAwesome size="2x" name="share-alt" inverse={true} />

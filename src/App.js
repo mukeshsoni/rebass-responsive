@@ -12,15 +12,16 @@ import categories from "./categories"
 import locations from "./locations.js"
 import DetailScreen from "./DetailScreen"
 
-const data = [
+let data = [
   {
     id: 0,
     title: "Toyota Aqua 2014",
-    description: "3450km",
+    description:
+      "J1 nxt prime for sale or ex can give a power bank and 2 headsets free plz whats up me or send a msg in ikamn",
+    topAd: true,
     location: "Colombo",
     category: "Cars and Vehicles",
-    price: 15000,
-    topAd: true
+    price: 15000
   },
   {
     id: 1,
@@ -68,6 +69,22 @@ const data = [
     topAd: false
   }
 ]
+
+data = data.map(listing => {
+  return Object.assign({}, listing, {
+    attributes: {
+      Brand: "Toyota",
+      Model: "Carina",
+      "Model Year": 1997,
+      Condition: "Used",
+      Transmission: "Automatic",
+      "Body type": "Saloon",
+      "Fuel type": "Diesel",
+      "Engine capacity": "2,000 cc",
+      Mileage: "200,000 km"
+    }
+  })
+})
 
 const ModalWithHeight = Modal.extend`
   ${height};
