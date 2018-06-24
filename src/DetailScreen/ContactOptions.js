@@ -41,6 +41,7 @@ class ContactOptions extends PureComponent {
                 flex={[1, 1, 0]}
                 p={[0, 0, 2]}
                 borderBottom="1px solid black"
+                width="100%"
               >
                 <Button width="100%">
                   <Flex justifyContent="center" width="100%">

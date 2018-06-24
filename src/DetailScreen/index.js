@@ -27,7 +27,7 @@ class DetailScreen extends Component {
           <DetailHeader onBackClick={onBackClick} title={title} />
         </HideOnDesktop>
         <Flex flexDirection={["column", "column", "row"]}>
-          <Flex flexDirection="column">
+          <Flex flexDirection="column" flex={3}>
             <Carousel index={false ? 1 : 0} mb={3} flex="3">
               <Box>
                 <Image
@@ -42,7 +42,8 @@ class DetailScreen extends Component {
             </Carousel>
 
             <Flex
-              p={3}
+              p={4}
+              pt={3}
               flexDirection={["column", "column", "row"]}
               justifyContent={[null, null, "space-between"]}
             >
