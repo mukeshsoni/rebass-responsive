@@ -121,7 +121,7 @@ class App extends Component {
     showLocationModal: false,
     categoryPath: [],
     locationPath: [],
-    selectedListingId: 0,
+    selectedListingId: null,
     searchString: ""
   }
 

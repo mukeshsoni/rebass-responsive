@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Flex, Text, Box, Sticky, Divider } from "rebass"
+import { Flex, Text, Sticky, Divider } from "rebass"
 import ListItem from "./ListItem.js"
 import MultiLevelSelectHeader from "./MultiLevelSelectHeader"
 import FullHeightFlex from "./FullHeightFlex"
