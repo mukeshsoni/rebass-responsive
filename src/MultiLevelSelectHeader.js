@@ -6,7 +6,7 @@ import { withTheme } from "styled-components"
 
 class MultiLevelSelectHeader extends PureComponent {
   render() {
-    const { selectedIds, theme, listType } = this.props
+    const { path, theme, listType } = this.props
 
     return (
       <ContainerWithBg
@@ -17,14 +17,14 @@ class MultiLevelSelectHeader extends PureComponent {
       >
         <Flex p={2}>
           <Text fontSize={2} mr={2} onClick={this.props.onCloseClick}>
-            {selectedIds.length > 0 ? (
+            {path.length > 0 ? (
               <FontAwesome name="arrow-left" inverse={true} />
             ) : (
               <FontAwesome name="close" inverse={true} />
             )}
           </Text>
           <Text color="white" fontSize={4}>
-            {selectedIds.length === 0 ? listType : "Back"}
+            {path.length === 0 ? listType : "Back"}
           </Text>
         </Flex>
       </ContainerWithBg>

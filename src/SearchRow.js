@@ -4,15 +4,17 @@ import FlexPlus from "./FlexPlus.js"
 import FullWidthButton from "./Button/FullWidthButton.js"
 import HideOnNonMobile from "./HideOnNonMobile.js"
 import Input from "./Input.js"
+import { withTheme } from "styled-components"
 
-export default class SearchRow extends Component {
+class SearchRow extends Component {
   render() {
     const {
       onCategoryButtonClick,
       onLocationButtonClick,
       onInput,
       category,
-      location
+      location,
+      theme: { colors }
     } = this.props
 
     return (
@@ -23,7 +25,11 @@ export default class SearchRow extends Component {
               {location || "Location"}
             </FullWidthButton>
           </Flex>
-          <HideOnNonMobile bg="#ececec" alignItems="center" color="#767676">
+          <HideOnNonMobile
+            bg={colors.light}
+            alignItems="center"
+            color="#767676"
+          >
             ❘
           </HideOnNonMobile>
           <Flex flex="1" mr={[0, 1]}>
@@ -44,3 +50,5 @@ export default class SearchRow extends Component {
     )
   }
 }
+
+export default withTheme(SearchRow)

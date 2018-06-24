@@ -3,92 +3,140 @@ import { Flex, Text, Box, Sticky, Divider } from "rebass"
 import ListItem from "./ListItem.js"
 import MultiLevelSelectHeader from "./MultiLevelSelectHeader"
 import FullHeightFlex from "./FullHeightFlex"
+import HideOnTablet from "./HideOnTablet.js"
 
-function getTopLevelName(data, id) {
-  return data.find(item => item.id === id).name
+export function getItemFromPath(items, path) {
+  return path.reduce((acc, id, index) => {
+    if (index === path.length - 1) {
+      return acc[id]
+    }
+
+    return acc[id].subCategories
+  }, items)
+}
+
+function getHeaderNameForPath(data, path) {
+  if (path.length === 0) {
+    return null
+  }
+
+  return getItemFromPath(data, path).name
+}
+
+function getItems(data, path) {
+  if (path.length === 0) {
+    return data
+  }
+
+  return getItemFromPath(data, path).subCategories
 }
 
 export default class MultiLevelSelector extends Component {
   state = {
-    selectedIds: []
+    path: []
   }
 
-  handleItemClick = id => {
-    if (this.state.selectedIds.length === 1) {
-      this.props.onItemSelection(this.state.selectedIds.concat(id))
+  handleItemClick = path => {
+    let selectedItem = getItemFromPath(this.props.data, path)
+    // if there are no other sub levels to item selected on path, return that path
+    // instead, we can just setState the path and call the onItemSelection prop on every path selection
+    if (!selectedItem.subCategories) {
+      this.props.onItemSelection(path)
     } else {
       this.setState({
-        selectedIds: this.state.selectedIds.concat(id)
+        path
       })
     }
   }
 
   handleBackButtonClick = () => {
     this.setState({
-      selectedIds: []
+      path: []
     })
   }
 
-  getListHeader(data, selectedIds) {
+  getListHeader(data, path) {
     // There will be a header only if the selection has moved beyond the first level
-    if (selectedIds.length === 0) {
+    if (path.length === 0) {
       return null
-    } else {
-      return (
-        <Flex alignItems="center" flexWrap="wrap">
-          {selectedIds
-            .reduce((acc, selectedId) => {
-              return acc
-                .concat(
-                  <Text p={2} fontWeight="bold" mb={3}>
-                    {getTopLevelName(data, selectedId)}
-                  </Text>
-                )
-                .concat("-")
-            }, [])
-            .slice(0, -1)}
-        </Flex>
-      )
     }
-  }
-
-  getList(data, selectedIds) {
-    const itemsToRender = selectedIds.reduce((acc, selectedId) => {
-      let items = acc.find(item => item.id === selectedId).subCategories
-      return items
-    }, data)
 
     return (
-      <Box flex="1 0 auto" mt={3}>
-        {this.getListHeader(data, selectedIds)}
+      <Flex alignItems="center" flexWrap="wrap" mb={3} p={2}>
+        {path
+          .reduce((acc, selectedId, index) => {
+            return acc
+              .concat(
+                <Text fontWeight="bold">
+                  {getHeaderNameForPath(data, path.slice(0, index + 1))}
+                </Text>
+              )
+              .concat(" - ")
+          }, [])
+          .slice(0, -1)}
+      </Flex>
+    )
+  }
 
-        {itemsToRender.map((item, index) => (
+  getColumn(items, path, header) {
+    return (
+      <Flex flexDirection="column" flex="1 0 auto" mt={3} p={2}>
+        {header}
+        {items.map((item, index) => (
           <React.Fragment>
-            <ListItem onClick={this.handleItemClick.bind(this, item.id)}>
+            <ListItem
+              onClick={this.handleItemClick.bind(this, path.concat(index))}
+            >
               {item.name}
             </ListItem>
             <Divider w={1} color="lightblue" />
           </React.Fragment>
         ))}
-      </Box>
+      </Flex>
+    )
+  }
+
+  getList(data, path) {
+    return (
+      <Flex>
+        {[-1].concat(path).reduce((acc, selectedId, index, arr) => {
+          const subPath = path.slice(0, index)
+          const column = this.getColumn(
+            getItems(data, subPath),
+            subPath,
+            this.getListHeader(data, subPath)
+          )
+
+          // hide all but last column on mobile devices
+          if (index === arr.length - 1) {
+            return acc.concat(column)
+          } else {
+            return acc.concat(
+              <HideOnTablet flex="1 0 auto" p={2}>
+                {column}
+              </HideOnTablet>
+            )
+          }
+        }, [])}
+      </Flex>
     )
   }
 
   render() {
     const { data, onCloseClick, listType } = this.props
-    const { selectedIds } = this.state
+    const { path } = this.state
 
     return (
       <FullHeightFlex flexDirection="column" height="100vh">
         <Sticky top={0} bg="white">
           <MultiLevelSelectHeader
             listType={listType}
-            selectedIds={selectedIds}
+            path={path}
             onCloseClick={onCloseClick}
             onBackButtonClick={this.handleBackButtonClick}
           />
         </Sticky>
-        {this.getList(data, selectedIds)}
+        {this.getList(data, path)}
       </FullHeightFlex>
     )
   }

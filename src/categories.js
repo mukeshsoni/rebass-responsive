@@ -9,7 +9,20 @@ const categories = [
       { id: 2, name: "Mobile Phone Accessories " },
       { id: 3, name: "Computers and Tablets " },
       { id: 4, name: "Computer Accessories " },
-      { id: 5, name: "TVs " },
+      {
+        id: 5,
+        name: "TVs ",
+        subCategories: [
+          { id: 0, name: "All TVs" },
+          { id: 1, name: "4K" },
+          { id: 2, name: "Full HD" },
+          { id: 4, name: "LED" },
+          { id: 4, name: "Plasma" },
+          { id: 4, name: "LCD" },
+          { id: 4, name: "OLED" },
+          { id: 3, name: "Curved LED" }
+        ]
+      },
       { id: 6, name: "TV and Video Accessories " },
       { id: 7, name: "Cameras and Camcorders " },
       { id: 8, name: "Audio and MP3 " },
@@ -24,7 +37,19 @@ const categories = [
     name: "Vehicles ",
     subCategories: [
       { id: 0, name: "All Vehicles " },
-      { id: 1, name: "Cars " },
+      {
+        id: 1,
+        name: "Cars ",
+        subCategories: [
+          { id: 0, name: "Hatchback" },
+          { id: 1, name: "Sedan" },
+          { id: 2, name: "MVP (Multi Utility Vehicle)" },
+          { id: 4, name: "SUB (Sports Utility Vehicle)" },
+          { id: 4, name: "Crossover" },
+          { id: 4, name: "Coupe" },
+          { id: 4, name: "Convertible" }
+        ]
+      },
       { id: 2, name: "Motorbikes and Scooters " },
       { id: 3, name: "Three Wheelers " },
       { id: 4, name: "Push Cycles " },

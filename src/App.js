@@ -5,7 +5,7 @@ import { height } from "styled-system"
 import Listings from "./Listings.js"
 import Header from "./Header.js"
 import SearchRow from "./SearchRow.js"
-import MultiLevelSelector from "./MultiLevelSelector"
+import MultiLevelSelector, { getItemFromPath } from "./MultiLevelSelector"
 import Filters from "./Filters/Filters"
 import HideOnMobile from "./HideOnMobile.js"
 import categories from "./categories"
@@ -119,11 +119,9 @@ class App extends Component {
     showCategoryModal: false,
     showFilterModal: false,
     showLocationModal: false,
-    categoryId: null,
-    subCategoryId: null,
-    locationId: null,
-    subLocationId: null,
-    selectedListingId: 0,
+    categoryPath: [],
+    locationPath: [],
+    selectedListingId: null,
     searchString: ""
   }
 
@@ -131,8 +129,8 @@ class App extends Component {
     this.setState({ showCategoryModal: true })
   }
 
-  applyCategoryFilter = ([categoryId, subCategoryId]) => {
-    this.setState({ categoryId, subCategoryId, showCategoryModal: false })
+  applyCategoryFilter = categoryPath => {
+    this.setState({ categoryPath, showCategoryModal: false })
   }
 
   handleCategoryModalCloseClick = () => {
@@ -155,8 +153,8 @@ class App extends Component {
     this.setState({ showLocationModal: true })
   }
 
-  applyLocationFilter = ([locationId, subLocationId]) => {
-    this.setState({ locationId, subLocationId, showLocationModal: false })
+  applyLocationFilter = locationPath => {
+    this.setState({ locationPath, showLocationModal: false })
   }
 
   handleLocationModalCloseClick = () => {
@@ -180,10 +178,8 @@ class App extends Component {
       showCategoryModal,
       showLocationModal,
       showFilterModal,
-      categoryId,
-      subCategoryId,
-      locationId,
-      subLocationId,
+      categoryPath,
+      locationPath,
       selectedListingId,
       searchString
     } = this.state
@@ -202,12 +198,12 @@ class App extends Component {
         <Header onFilterLinkClick={this.handleFilterLinkClick} />
         <SearchRow
           category={
-            categoryId &&
-            getSubCategoryName(categories, categoryId, subCategoryId)
+            categoryPath.length > 0 &&
+            getItemFromPath(categories, categoryPath).name
           }
           location={
-            locationId &&
-            getSubCategoryName(locations, locationId, subLocationId)
+            locationPath.length > 0 &&
+            getItemFromPath(locations, locationPath).name
           }
           onCategoryButtonClick={this.handleCategoryButtonClick}
           onLocationButtonClick={this.handleLocationButtonClick}
