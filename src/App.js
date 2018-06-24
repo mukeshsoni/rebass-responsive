@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import "./App.css"
 import { Modal, Flex, Box, Text } from "rebass"
-import { height } from "styled-system"
+import { width, height } from "styled-system"
 import Listings from "./Listings.js"
 import Header from "./Header.js"
 import SearchRow from "./SearchRow.js"
@@ -236,7 +236,7 @@ class App extends Component {
           {showCategoryModal && (
             <ModalWithHeight
               bg="white"
-              width={["100vw", "80vh"]}
+              width={["100vw", "80vw"]}
               height={["100vh", "auto"]}
             >
               <MultiLevelSelector
@@ -250,7 +250,7 @@ class App extends Component {
           {showLocationModal && (
             <ModalWithHeight
               bg="white"
-              width={["100vw", "80vh"]}
+              width={["100vw", "80vw"]}
               height={["100vh", "auto"]}
             >
               <MultiLevelSelector
@@ -264,7 +264,7 @@ class App extends Component {
           {showFilterModal && (
             <ModalWithHeight
               bg="white"
-              width={["100vw", "80vh"]}
+              width={["100vw", "80vw"]}
               height={["100vh", "auto"]}
             >
               <Filters
