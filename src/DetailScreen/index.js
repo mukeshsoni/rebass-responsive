@@ -9,6 +9,7 @@ import HideOnTablet from "../HideOnTablet.js"
 import Header from "../Header.js"
 import ListingAttributes from "./ListingAttributes.js"
 import ContactOptions from "./ContactOptions"
+import FlexPlus from "../FlexPlus.js"
 
 class DetailScreen extends Component {
   render() {
@@ -26,8 +27,12 @@ class DetailScreen extends Component {
         <HideOnDesktop>
           <DetailHeader onBackClick={onBackClick} title={title} />
         </HideOnDesktop>
-        <Flex flexDirection={["column", "column", "row"]}>
-          <Flex flexDirection="column" flex={3}>
+        <FlexPlus
+          flexDirection={["column", "column", "row"]}
+          margin="auto"
+          maxWidth={960}
+        >
+          <FlexPlus flexDirection="column" flex={3}>
             <Carousel index={false ? 1 : 0} mb={3} flex="3">
               <Box>
                 <Image
@@ -42,8 +47,7 @@ class DetailScreen extends Component {
             </Carousel>
 
             <Flex
-              p={4}
-              pt={3}
+              p={[3, 3, 4]}
               flexDirection={["column", "column", "row"]}
               justifyContent={[null, null, "space-between"]}
             >
@@ -58,12 +62,12 @@ class DetailScreen extends Component {
                 <ListingAttributes listing={this.props.listing} />
               </Box>
             </Flex>
-          </Flex>
+          </FlexPlus>
           <HideOnDesktop>
             <DetailScreenActions />
           </HideOnDesktop>
           <ContactOptions />
-        </Flex>
+        </FlexPlus>
       </Flex>
     )
   }

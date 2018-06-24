@@ -18,6 +18,7 @@ const FlexPlus = Flex.extend`
   ${width};
   ${maxWidth};
   ${height};
+  margin: ${props => props.margin};
 `
 
 export default FlexPlus
