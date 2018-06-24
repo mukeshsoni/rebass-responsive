@@ -22,7 +22,7 @@ class Header extends Component {
     return (
       <ContainerWithBg p={2} bg={colors.brand}>
         <FlexPlus
-          maxWidth={940}
+          maxWidth={1156}
           margin="auto"
           justifyContent="space-between"
           alignItems="center"

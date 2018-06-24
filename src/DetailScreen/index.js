@@ -20,7 +20,7 @@ class DetailScreen extends Component {
     } = this.props
 
     return (
-      <Flex flexDirection="column">
+      <FlexPlus flexDirection="column">
         <HideOnTablet>
           <Header />
         </HideOnTablet>
@@ -30,7 +30,10 @@ class DetailScreen extends Component {
         <FlexPlus
           flexDirection={["column", "column", "row"]}
           margin="auto"
-          maxWidth={960}
+          width="100%"
+          maxWidth={1156}
+          background="white"
+          p={4}
         >
           <FlexPlus flexDirection="column" flex={3}>
             <Carousel index={false ? 1 : 0} mb={3} flex="3">
@@ -68,7 +71,7 @@ class DetailScreen extends Component {
           </HideOnDesktop>
           <ContactOptions />
         </FlexPlus>
-      </Flex>
+      </FlexPlus>
     )
   }
 }

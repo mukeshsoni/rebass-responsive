@@ -7,7 +7,8 @@ import {
   width,
   maxWidth,
   space,
-  height
+  height,
+  background
 } from "styled-system"
 
 const FlexPlus = Flex.extend`
@@ -18,6 +19,7 @@ const FlexPlus = Flex.extend`
   ${width};
   ${maxWidth};
   ${height};
+  ${background};
   margin: ${props => props.margin};
 `
 

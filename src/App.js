@@ -11,6 +11,7 @@ import HideOnMobile from "./HideOnMobile.js"
 import categories from "./categories"
 import locations from "./locations.js"
 import DetailScreen from "./DetailScreen"
+import FlexPlus from "./FlexPlus.js"
 
 let data = [
   {
@@ -196,74 +197,83 @@ class App extends Component {
     return (
       <Flex flexDirection="column">
         <Header onFilterLinkClick={this.handleFilterLinkClick} />
-        <SearchRow
-          category={
-            categoryPath.length > 0 &&
-            getItemFromPath(categories, categoryPath).name
-          }
-          location={
-            locationPath.length > 0 &&
-            getItemFromPath(locations, locationPath).name
-          }
-          onCategoryButtonClick={this.handleCategoryButtonClick}
-          onLocationButtonClick={this.handleLocationButtonClick}
-          onInput={this.handleSearchInput}
-        />
-        <Flex mt={2} p={1}>
-          <Text>Results: </Text>
-          <Text fontWeight="bold">1234</Text>
-        </Flex>
-        <Flex width="100%">
-          <HideOnMobile flex={[null, 3, 3, 3]}>
-            <Filters />
-          </HideOnMobile>
-          <Box flex={[null, 6, 7, 8]} width="100%">
-            <Listings
-              data={getFilteredData(data, searchString)}
-              onListingClick={this.handleListingClick}
-            />
-          </Box>
-        </Flex>
-        {showCategoryModal && (
-          <ModalWithHeight
-            bg="white"
-            width={["100vw", "80vh"]}
-            height={["100vh", "auto"]}
-          >
-            <MultiLevelSelector
-              listType="Categories"
-              data={categories}
-              onCloseClick={this.handleCategoryModalCloseClick}
-              onItemSelection={this.applyCategoryFilter}
-            />
-          </ModalWithHeight>
-        )}
-        {showLocationModal && (
-          <ModalWithHeight
-            bg="white"
-            width={["100vw", "80vh"]}
-            height={["100vh", "auto"]}
-          >
-            <MultiLevelSelector
-              listType="Locations"
-              data={locations}
-              onCloseClick={this.handleLocationModalCloseClick}
-              onItemSelection={this.applyLocationFilter}
-            />
-          </ModalWithHeight>
-        )}
-        {showFilterModal && (
-          <ModalWithHeight
-            bg="white"
-            width={["100vw", "80vh"]}
-            height={["100vh", "auto"]}
-          >
-            <Filters
-              onBackClick={this.handleFilterModalBackClick}
-              onApplyFilterClick={this.handleApplyFilterClick}
-            />
-          </ModalWithHeight>
-        )}
+        <FlexPlus
+          flexDirection="column"
+          width="100%"
+          maxWidth={1156}
+          margin="auto"
+          background="white"
+          p={4}
+        >
+          <SearchRow
+            category={
+              categoryPath.length > 0 &&
+              getItemFromPath(categories, categoryPath).name
+            }
+            location={
+              locationPath.length > 0 &&
+              getItemFromPath(locations, locationPath).name
+            }
+            onCategoryButtonClick={this.handleCategoryButtonClick}
+            onLocationButtonClick={this.handleLocationButtonClick}
+            onInput={this.handleSearchInput}
+          />
+          <Flex mt={2} p={1}>
+            <Text>Results: </Text>
+            <Text fontWeight="bold">1234</Text>
+          </Flex>
+          <Flex width="100%">
+            <HideOnMobile flex={[null, 3, 3, 3]}>
+              <Filters />
+            </HideOnMobile>
+            <Box flex={[null, 6, 7, 8]} width="100%">
+              <Listings
+                data={getFilteredData(data, searchString)}
+                onListingClick={this.handleListingClick}
+              />
+            </Box>
+          </Flex>
+          {showCategoryModal && (
+            <ModalWithHeight
+              bg="white"
+              width={["100vw", "80vh"]}
+              height={["100vh", "auto"]}
+            >
+              <MultiLevelSelector
+                listType="Categories"
+                data={categories}
+                onCloseClick={this.handleCategoryModalCloseClick}
+                onItemSelection={this.applyCategoryFilter}
+              />
+            </ModalWithHeight>
+          )}
+          {showLocationModal && (
+            <ModalWithHeight
+              bg="white"
+              width={["100vw", "80vh"]}
+              height={["100vh", "auto"]}
+            >
+              <MultiLevelSelector
+                listType="Locations"
+                data={locations}
+                onCloseClick={this.handleLocationModalCloseClick}
+                onItemSelection={this.applyLocationFilter}
+              />
+            </ModalWithHeight>
+          )}
+          {showFilterModal && (
+            <ModalWithHeight
+              bg="white"
+              width={["100vw", "80vh"]}
+              height={["100vh", "auto"]}
+            >
+              <Filters
+                onBackClick={this.handleFilterModalBackClick}
+                onApplyFilterClick={this.handleApplyFilterClick}
+              />
+            </ModalWithHeight>
+          )}
+        </FlexPlus>
       </Flex>
     )
   }
