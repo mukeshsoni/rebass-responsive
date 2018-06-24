@@ -38,7 +38,7 @@ class SearchRow extends Component {
             </FullWidthButton>
           </Flex>
         </FlexPlus>
-        <Box width={[1, 1, 1 / 2]} p={[1, 1]} mx={[2, 0]} mt={[2, 0]}>
+        <Box width={[1, 1, 1 / 2]} p={[1, 1]} mx={[2, 0]} mt={[3, 0]}>
           <Input
             placeholder="Looking for something?"
             mt={10}

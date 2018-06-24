@@ -203,7 +203,7 @@ class App extends Component {
           maxWidth={1156}
           margin="auto"
           background="white"
-          p={4}
+          p={[0, 0, 4]}
         >
           <SearchRow
             category={
