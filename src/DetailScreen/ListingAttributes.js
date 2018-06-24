@@ -16,6 +16,7 @@ class ListingAttributes extends PureComponent {
           return (
             <Flex
               flexDirection={["column", "column", "row"]}
+              justifyContent={[null, null, "space-between"]}
               mb={3}
               key={index}
             >

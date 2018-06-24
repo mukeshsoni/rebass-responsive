@@ -16,6 +16,7 @@ class DetailScreenActions extends PureComponent {
         borderBottom={`1px solid ${colors.light}`}
         borderTop={`1px solid ${colors.light}`}
         mb={3}
+        flex={1}
       >
         <SubduedColorButton>Edit Ad</SubduedColorButton>
         <Text color={colors.light}>❘</Text>
