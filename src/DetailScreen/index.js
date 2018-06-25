@@ -20,9 +20,6 @@ class DetailScreen extends Component {
 
     return (
       <FlexPlus flexDirection="column">
-        <HideOnTablet>
-          <Header />
-        </HideOnTablet>
         <HideOnDesktop>
           <DetailHeader title={title} />
         </HideOnDesktop>

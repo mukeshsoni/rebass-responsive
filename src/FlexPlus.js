@@ -6,6 +6,7 @@ import {
   borderTop,
   width,
   maxWidth,
+  minWidth,
   space,
   height,
   background
@@ -18,6 +19,7 @@ const FlexPlus = Flex.extend`
   ${borderTop};
   ${width};
   ${maxWidth};
+  ${minWidth};
   ${height};
   ${background};
   margin: ${props => props.margin};

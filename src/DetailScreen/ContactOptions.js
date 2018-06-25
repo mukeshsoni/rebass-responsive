@@ -35,9 +35,10 @@ class ContactOptions extends PureComponent {
         flex="1"
       >
         <Space mr={3}>
-          {contactOptionsConfig.map(option => {
+          {contactOptionsConfig.map((option, index) => {
             return (
               <Box
+                key={"contact_option_" + index}
                 flex={[1, 1, 0]}
                 p={[0, 0, 2]}
                 borderBottom="1px solid black"

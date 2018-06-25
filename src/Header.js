@@ -1,5 +1,6 @@
 import React, { Component } from "react"
-import { Link, Flex, Box, Text, ButtonTransparent } from "rebass"
+import { Flex, Box, Text, ButtonTransparent } from "rebass"
+import { Link } from "react-router-dom"
 import ContainerWithBg from "./ContainerWithBg"
 import Menu from "./Menu.js"
 import HideOnMobile from "./HideOnMobile"
@@ -10,7 +11,7 @@ import { withTheme } from "styled-components"
 import FlexPlus from "./FlexPlus.js"
 
 const Logo = () => (
-  <Link href="#!">
+  <Link to="/">
     <Text color="white">Ikman</Text>
   </Link>
 )
