@@ -9,6 +9,7 @@ import HideOnMobile from "../HideOnMobile.js"
 import categories from "../categories"
 import locations from "../locations.js"
 import ModalWithHeight from "../ModalWithHeight.js"
+import listingData from "../listing_data"
 
 function getFilteredData(data, searchString) {
   if (!searchString) {
@@ -69,7 +70,6 @@ class SearchPage extends Component {
   }
 
   render() {
-    const { data } = this.props
     const {
       showCategoryModal,
       showLocationModal,
@@ -111,7 +111,7 @@ class SearchPage extends Component {
           </HideOnMobile>
           <Box flex={[null, 6, 7, 8]} width="100%">
             <Listings
-              data={getFilteredData(data, searchString)}
+              data={getFilteredData(listingData, searchString)}
               onListingClick={this.handleListingClick}
             />
           </Box>
