@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { Box } from "rebass"
-import Listing from "./listing.js"
+import Listing from "./Listing.js"
 
 export default class Listings extends Component {
   getListings() {

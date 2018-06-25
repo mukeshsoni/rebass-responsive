@@ -1,17 +1,12 @@
 import React, { Component } from "react"
 import "./App.css"
-import { Modal, Flex, Box, Text } from "rebass"
-import { width, height } from "styled-system"
-import Listings from "./Listings.js"
+import { Flex } from "rebass"
+import { BrowserRouter as Router, Route } from "react-router-dom"
 import Header from "./Header.js"
-import SearchRow from "./SearchRow.js"
-import MultiLevelSelector, { getItemFromPath } from "./MultiLevelSelector"
 import Filters from "./Filters/Filters"
-import HideOnMobile from "./HideOnMobile.js"
-import categories from "./categories"
-import locations from "./locations.js"
 import DetailScreen from "./DetailScreen"
-import FlexPlus from "./FlexPlus.js"
+import SearchPage from "./SearchPage"
+import ModalWithHeight from "./ModalWithHeight"
 
 let data = [
   {
@@ -87,55 +82,18 @@ data = data.map(listing => {
   })
 })
 
-const ModalWithHeight = Modal.extend`
-  ${height};
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-  padding: 0;
-  border-radius: 0;
-`
-
-function getSubCategoryName(categories, catId, subCatId) {
-  const category = categories.find(category => category.id === catId)
-  return category.subCategories.find(subCat => subCat.id === subCatId).name
-}
-
-function getFilteredData(data, searchString) {
-  if (!searchString) {
-    return data
-  }
-
-  return data.filter(
-    listing =>
-      listing.title.toLowerCase().includes(searchString.toLowerCase()) ||
-      listing.location.toLowerCase().includes(searchString.toLowerCase()) ||
-      listing.category.toLowerCase().includes(searchString.toLowerCase()) ||
-      listing.description.toLowerCase().includes(searchString.toLowerCase())
-  )
-}
-
 class App extends Component {
   state = {
-    showCategoryModal: false,
     showFilterModal: false,
-    showLocationModal: false,
-    categoryPath: [],
-    locationPath: [],
-    selectedListingId: null,
-    searchString: ""
+    selectedListingId: null
   }
 
-  handleCategoryButtonClick = () => {
-    this.setState({ showCategoryModal: true })
+  handleDetailsScreenBackClick = () => {
+    this.setState({ selectedListingId: null })
   }
 
-  applyCategoryFilter = categoryPath => {
-    this.setState({ categoryPath, showCategoryModal: false })
-  }
-
-  handleCategoryModalCloseClick = () => {
-    this.setState({ showCategoryModal: false })
+  handleListingClick = listingId => {
+    this.setState({ selectedListingId: listingId })
   }
 
   handleFilterLinkClick = () => {
@@ -150,40 +108,8 @@ class App extends Component {
     this.setState({ showFilterModal: false })
   }
 
-  handleLocationButtonClick = () => {
-    this.setState({ showLocationModal: true })
-  }
-
-  applyLocationFilter = locationPath => {
-    this.setState({ locationPath, showLocationModal: false })
-  }
-
-  handleLocationModalCloseClick = () => {
-    this.setState({ showLocationModal: false })
-  }
-
-  handleListingClick = listingId => {
-    this.setState({ selectedListingId: listingId })
-  }
-
-  handleDetailsScreenBackClick = () => {
-    this.setState({ selectedListingId: null })
-  }
-
-  handleSearchInput = e => {
-    this.setState({ searchString: e.target.value })
-  }
-
   render() {
-    const {
-      showCategoryModal,
-      showLocationModal,
-      showFilterModal,
-      categoryPath,
-      locationPath,
-      selectedListingId,
-      searchString
-    } = this.state
+    const { selectedListingId, showFilterModal } = this.state
 
     if (Number.isInteger(selectedListingId)) {
       return (
@@ -195,72 +121,10 @@ class App extends Component {
     }
 
     return (
-      <Flex flexDirection="column">
-        <Header onFilterLinkClick={this.handleFilterLinkClick} />
-        <FlexPlus
-          flexDirection="column"
-          width="100%"
-          maxWidth={1156}
-          margin="auto"
-          background="white"
-          p={[0, 0, 4]}
-        >
-          <SearchRow
-            category={
-              categoryPath.length > 0 &&
-              getItemFromPath(categories, categoryPath).name
-            }
-            location={
-              locationPath.length > 0 &&
-              getItemFromPath(locations, locationPath).name
-            }
-            onCategoryButtonClick={this.handleCategoryButtonClick}
-            onLocationButtonClick={this.handleLocationButtonClick}
-            onInput={this.handleSearchInput}
-          />
-          <Flex mt={2} p={1}>
-            <Text>Results: </Text>
-            <Text fontWeight="bold">1234</Text>
-          </Flex>
-          <Flex width="100%">
-            <HideOnMobile flex={[null, 3, 3, 3]}>
-              <Filters />
-            </HideOnMobile>
-            <Box flex={[null, 6, 7, 8]} width="100%">
-              <Listings
-                data={getFilteredData(data, searchString)}
-                onListingClick={this.handleListingClick}
-              />
-            </Box>
-          </Flex>
-          {showCategoryModal && (
-            <ModalWithHeight
-              bg="white"
-              width={["100vw", "80vw"]}
-              height={["100vh", "auto"]}
-            >
-              <MultiLevelSelector
-                listType="Categories"
-                data={categories}
-                onCloseClick={this.handleCategoryModalCloseClick}
-                onItemSelection={this.applyCategoryFilter}
-              />
-            </ModalWithHeight>
-          )}
-          {showLocationModal && (
-            <ModalWithHeight
-              bg="white"
-              width={["100vw", "80vw"]}
-              height={["100vh", "auto"]}
-            >
-              <MultiLevelSelector
-                listType="Locations"
-                data={locations}
-                onCloseClick={this.handleLocationModalCloseClick}
-                onItemSelection={this.applyLocationFilter}
-              />
-            </ModalWithHeight>
-          )}
+      <Router>
+        <Flex flexDirection="column">
+          <Header onFilterLinkClick={this.handleFilterLinkClick} />
+          <SearchPage data={data} onListingClick={this.handleListingClick} />
           {showFilterModal && (
             <ModalWithHeight
               bg="white"
@@ -273,8 +137,8 @@ class App extends Component {
               />
             </ModalWithHeight>
           )}
-        </FlexPlus>
-      </Flex>
+        </Flex>
+      </Router>
     )
   }
 }
