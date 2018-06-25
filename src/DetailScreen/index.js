@@ -15,8 +15,7 @@ class DetailScreen extends Component {
   render() {
     const {
       listing: { title, price, description },
-      theme: { colors },
-      onBackClick
+      theme: { colors }
     } = this.props
 
     return (
@@ -25,7 +24,7 @@ class DetailScreen extends Component {
           <Header />
         </HideOnTablet>
         <HideOnDesktop>
-          <DetailHeader onBackClick={onBackClick} title={title} />
+          <DetailHeader title={title} />
         </HideOnDesktop>
         <FlexPlus
           flexDirection={["column", "column", "row"]}

@@ -83,13 +83,13 @@ data = data.map(listing => {
 })
 
 class App extends Component {
+  static contextTypes = {
+    router: () => true // replace with PropTypes.object if you use them
+  }
+
   state = {
     showFilterModal: false,
     selectedListingId: null
-  }
-
-  handleDetailsScreenBackClick = () => {
-    this.setState({ selectedListingId: null })
   }
 
   handleListingClick = listingId => {
@@ -111,20 +111,34 @@ class App extends Component {
   render() {
     const { selectedListingId, showFilterModal } = this.state
 
-    if (Number.isInteger(selectedListingId)) {
-      return (
-        <DetailScreen
-          onBackClick={this.handleDetailsScreenBackClick}
-          listing={data.find(listing => listing.id === selectedListingId)}
-        />
-      )
-    }
-
     return (
       <Router>
         <Flex flexDirection="column">
           <Header onFilterLinkClick={this.handleFilterLinkClick} />
-          <SearchPage data={data} onListingClick={this.handleListingClick} />
+          <Route
+            exact={true}
+            path="/"
+            render={() => (
+              <SearchPage
+                data={data}
+                onListingClick={this.handleListingClick}
+              />
+            )}
+          />
+
+          <Route
+            exact={true}
+            path="/ad/:adId"
+            render={({ match }) => {
+              return (
+                <DetailScreen
+                  listing={data.find(
+                    listing => listing.id === +match.params.adId
+                  )}
+                />
+              )
+            }}
+          />
           {showFilterModal && (
             <ModalWithHeight
               bg="white"

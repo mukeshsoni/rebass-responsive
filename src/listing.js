@@ -19,7 +19,6 @@ class Listing extends PureComponent {
         borderBottom="1px solid #d4ded9"
         width="100%"
         maxWidth={500}
-        onClick={onClick}
       >
         <Image src="http://via.placeholder.com/100x100" />
         <Flex flexDirection="column" p={1} ml={[1, 2]}>

@@ -1,6 +1,5 @@
 import React, { Component } from "react"
-import { Modal, Flex, Box, Text } from "rebass"
-import { height } from "styled-system"
+import { Flex, Box, Text } from "rebass"
 import FlexPlus from "../FlexPlus.js"
 import SearchRow from "./SearchRow.js"
 import MultiLevelSelector, { getItemFromPath } from "../MultiLevelSelector"

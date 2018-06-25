@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react"
 import { Flex, Text } from "rebass"
+import { Link } from "react-router-dom"
 import ContainerWithBg from "../ContainerWithBg"
 import FontAwesome from "react-fontawesome"
 import { withTheme } from "styled-components"
@@ -20,11 +21,11 @@ class DetailHeader extends PureComponent {
         alignItems="center"
         justifyContent="space-between"
       >
-        <Flex p={2}>
-          <Text fontSize={2} mr={3} onClick={onBackClick}>
+        <Link to="/">
+          <Flex p={2} onClick={onBackClick}>
             <FontAwesome size="2x" name="arrow-left" inverse={true} />
-          </Text>
-        </Flex>
+          </Flex>
+        </Link>
         <Text color="white" fontSize={4}>
           {title}
         </Text>
