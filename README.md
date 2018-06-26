@@ -16,5 +16,6 @@ For server rendered app -
 
 ```
 yarn install
-NODE_ENV=developement server/bootstrap.js
+yarn build
+NODE_ENV=production server/bootstrap.js
 ```
